@@ -7,6 +7,16 @@ To install a GUI on your Ubuntu server, we will use the tasksel tool to choose a
 ```
 sudo apt update
 ```
+## Install a Lightweight Display Manager 
+- To manage the GUI login screen, install a lightweight display manager like SLiM (or alternatives like lightdm or sddm):
+```
+sudo apt install slim
+```
+- To check default DM 
+```
+cat /etc/X11/default-display-manager
+```
+
 ## Install tasksel if not already installed:
 ```
 sudo apt install tasksel
@@ -48,3 +58,35 @@ gnuradio-companion #if already installed
 or
 gedit
 ```
+
+# Accessing via VNC
+
+## To access the GUI through VNC:
+
+### On Server side 
+
+- Install vncserver 
+```
+sudo apt update
+sudo apt install tigervnc-standalone-server tigervnc-common
+```
+- Setup and start a vncserver
+```
+vncserver
+```
+- Create a Password 
+- use the following to see your connection info 
+```
+vncserver -list
+```
+
+### On Client Side
+
+- Install a VNC client (like TigerVNC Viewer) on your local machine. (If you are using a Linux-based distribution, Remmina may already be installed)
+
+- Open the VNC client and enter the server IP followed by the port. If you're using the WireGuard IP, enter:
+
+```
+<WireGuard-IP>:<Listnening Port> #for listnening port use command vncserver -list on server
+```
+- Enter the password that was set during the VNC server setup.
